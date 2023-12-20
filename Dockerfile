@@ -1,16 +1,17 @@
 FROM golang:1.21-bullseye as permset
 WORKDIR /src
-RUN git clone https://github.com/jacobalberty/permset.git /src && \
+RUN git clone https://github.com/serkbugs/permset.git /src && \
     mkdir -p /out && \
     go build -ldflags "-X main.chownDir=/unifi" -o /out/permset
 
 FROM ubuntu:20.04
 
-LABEL maintainer="Jacob Alberty <jacob.alberty@foundigital.com>"
+LABEL maintainer="serkbugs <serkbugs@gmail.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG PKGURL=https://dl.ui.com/unifi/7.5.176/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/7.5.176/unifi_sysvinit_all.deb
+ARG PKGURL=https://dl.ui.com/unifi/8.0.24/unifi_sysvinit_all.deb
 
 ENV BASEDIR=/usr/lib/unifi \
     DATADIR=/unifi/data \

@@ -1,17 +1,28 @@
-FROM golang:1.21-bullseye as permset
+FROM golang:1.22-bullseye AS permset
 WORKDIR /src
 RUN git clone https://github.com/jacobalberty/permset.git /src && \
     mkdir -p /out && \
     go build -ldflags "-X main.chownDir=/unifi" -o /out/permset
 
 FROM ubuntu:20.04
+#FROM ubuntu:24.04
 
 LABEL maintainer="serkbugs <serkbugs@gmail.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 #ARG PKGURL=https://dl.ui.com/unifi/7.5.176/unifi_sysvinit_all.deb
-ARG PKGURL=https://dl.ui.com/unifi/8.2.93/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/8.2.93/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/8.3.32/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/8.4.59/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/8.4.62/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/8.5.6/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/8.6.9/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/9.0.108/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/9.0.114/unifi_sysvinit_all.deb
+#ARG PKGURL=https://dl.ui.com/unifi/9.2.87/unifi_sysvinit_all.deb
+ARG PKGURL=https://dl.ui.com/unifi/9.3.43/unifi_sysvinit_all.deb
+
 
 ENV BASEDIR=/usr/lib/unifi \
     DATADIR=/unifi/data \

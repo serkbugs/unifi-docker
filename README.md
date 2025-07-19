@@ -351,3 +351,29 @@ provides more about what we've learned while developing Unifi-in-Docker.
 ## TODO
 
 This list is empty for now, please [add your suggestions](https://github.com/serkbugs/unifi-docker/issues).
+
+## build
+docker build . -t serkbugs/unifi-docker:v8.6.9
+docker save serkbugs/unifi-docker:v8.6.9 -o ./unifi-docker-8.6.9.img
+
+docker tag serkbugs/unifi-docker:v8.6.9 serkbugs/unifi-docker:latest
+docker save serkbugs/unifi-docker:latest -o ./unifi-docker-latest.img
+
+## Mac
+https://code.saghul.net/2023/09/migrating-from-docker-desktop-to-colima/ 
+
+brew install colima docker
+brew install docker-buildx docker-compose
+mkdir -p ~/.docker/cli-plugins
+ln -sfn /opt/homebrew/opt/docker-buildx/bin/docker-buildx ~/.docker/cli-plugins/docker-buildx
+ln -sfn /opt/homebrew/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+
+colima start --cpu 4 --memory 8 --disk 60 --mount-type 9p
+
+docker buildx build --platform linux/amd64  . -t serkbugs/unifi-docker:v9.0.114 
+docker tag serkbugs/unifi-docker:v9.0.114 serkbugs/unifi-docker:latest
+docker save serkbugs/unifi-docker:latest -o ./unifi-docker-latest.img
+
+To stop and delete all 
+colima stop
+colima delete

@@ -382,3 +382,6 @@ colima stop
 colima delete
 ```
 Do not need to execute "delete" but if space is important that it might help to safe some. 
+
+## Other links to connsider 
+[Unifi](https://community.ui.com/questions/UniFi-Installation-Scripts-or-UniFi-Easy-Update-Script-or-UniFi-Lets-Encrypt-or-UniFi-Easy-Encrypt-/ccbc7530-dd61-40a7-82ec-22b17f027776) script to install Unifi console on linux. 
